@@ -1,11 +1,16 @@
 public class Logic {
 
-    // "A1" -> [0,0], "J10" -> [9,9]; ritorna null se formato invalido
+    /**
+     * Converts coordinates like "A1" or "J10" to [row, col].
+     * Returns null if the format is invalid.
+     */
     public int[] parseCoordinateSafe(String coord) {
-        if (coord == null || coord.length() < 2 || coord.length() > 3) return null;
+        if (coord == null) return null;
+        coord = coord.trim();
+        if (coord.length() < 2 || coord.length() > 3) return null;
 
         char rowChar = coord.charAt(0);
-        if (rowChar < 'A' || rowChar > 'Z') return null;
+        if (rowChar < 'A' || rowChar > 'J') return null;
 
         String numPart = coord.substring(1);
         int colNumber;
@@ -30,39 +35,10 @@ public class Logic {
     }
 
     public int shipLength(int[] a, int[] b) {
-        if (a[0] == b[0]) { // orizzontale
+        if (a[0] == b[0]) { // horizontal
             return Math.abs(b[1] - a[1]) + 1;
-        } else { // verticale
-            return Math.abs(b[0] - a[0]) + 1;
         }
+        // vertical
+        return Math.abs(b[0] - a[0]) + 1;
     }
-    public String partsBoat(int[] start, int[] end) {
-        StringBuilder parts = new StringBuilder();
-
-        if (start[0] == end[0]) { // orizzontale
-            int row = start[0];
-            int from = Math.min(start[1], end[1]);
-            int to = Math.max(start[1], end[1]);
-
-            for (int c = from; c <= to; c++) {
-                char letter = (char) ('A' + row);
-                int number = c + 1;
-                parts.append(letter).append(number).append(" ");
-            }
-        } else { // verticale
-            int col = start[1];
-            int from = Math.min(start[0], end[0]);
-            int to = Math.max(start[0], end[0]);
-
-            for (int r = from; r <= to; r++) {
-                char letter = (char) ('A' + r);
-                int number = col + 1;
-                parts.append(letter).append(number).append(" ");
-            }
-        }
-
-        return parts.toString().trim();
-    }
-
 }
-
