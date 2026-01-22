@@ -101,6 +101,7 @@ e lo schermo viene “pulito” (con print di righe vuote) per evitare cheat.
 
 ## 🧱 Project Structure
 
+```text
 battleship/
 ├── Main.java
 │   ├── Gestisce il flow: setup player 1/2 + turni PvP
@@ -119,7 +120,6 @@ battleship/
 │
 └── Ship.java
     └── Modello semplice: nome + lunghezza
-
 ---
 
 ## 🧠 Concepts Applied
